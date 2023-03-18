@@ -14,7 +14,7 @@
 ;;         if data == 0 then return its elements 
 ;;         else return empty
 
-(define F1 (make-elt "F1" 1 empty))
+(define F1 (make-elt "F1" 1 empty)) 
 (define F2 (make-elt "F2" 2 empty))
 (define F3 (make-elt "F3" 3 empty))
 (define D4 (make-elt "D4" 0 (list F1 F2)))
