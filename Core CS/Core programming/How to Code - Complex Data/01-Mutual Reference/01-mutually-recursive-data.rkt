@@ -64,4 +64,38 @@
                    (sum-data--list (rest list)))]))
 
 
+;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;
+;; problem
+;;  design a function that consumes String and Element
+;;  and looks for a data element with the given name
+;;  if it finds that element it produces the data
+;;  otherwise it produces false .
 
+;; string , element -> Boolen
+
+;(define (fn-for-element String element) false)  ; => stub
+;(define (fn-for-list list) false)        ; => stub
+
+;(make-elt String Integer ListofElement)
+;; ("F1" 1 empty)
+(check-expect (fn-for-element F1 "F1") 1)
+(check-expect (fn-for-element F1 "F2") false)
+(check-expect (fn-for-element F3 "F3") 3)
+(check-expect (fn-for-element D4 "F2") 2);
+(check-expect (fn-for-element D5 "F1") false)
+(check-expect (fn-for-element D5 "F3") 3)
+(check-expect (fn-for-element D6 "F2") 2)
+(define (fn-for-element e s)
+      (if  (string=? (elt-name e) s)  ;; true
+           (elt-data e)
+            (fn-for-list (elt-subs e) s) 
+           )
+      )
+
+(define (fn-for-list list s)
+  (cond [(empty? list)false]
+        [else
+         (if (not (false? (fn-for-element (first list) s)))
+             (fn-for-element (first list) s)
+             (fn-for-list (rest list) s))
+         ]))
